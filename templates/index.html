@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Real-Time Audio Transcription with OpenAI Whisper</title>
+    <!-- TODO#2 - Add Bootstrap CSS for styling -->
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- TODO#3 - Add custom styles to center the content -->
+    <style>
+      body,
+      html {
+        height: 100%;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #f8f9fa;
+      }
+      .transcription-container {
+        text-align: center;
+      }
+      .transcription {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        max-width: 80%;
+        margin: auto;
+      }
+      h1 {
+        margin-bottom: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- TODO#1 - Add basic container for transcription -->
+    <h1>
+      <div class="container transcription-container">
+        <h1>Live Transcription</h1>
+        <div id="transcription" class="transcription"></div>
+      </div>
+    </h1>
+
+    <!-- TODO#5 - Add JavaScript dependencies for Bootstrap functionality -->
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- TODO#4 - Add SocketIO for real-time updates -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.js"></script>
+
+    <script>
+      var socket = io();
+
+      socket.on("transcription", function (msg) {
+        var transcriptionDiv = document.getElementById("transcription");
+        transcriptionDiv.innerHTML += "<p>" + msg.data + "</p>";
+      });
+    </script>
+  </body>
+</html>
